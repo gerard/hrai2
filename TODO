@@ -1,0 +1,6 @@
+* Date shortcut for today (Usage of 'now')
+* Improvements to list filtering (use another language?)
+    - Support to list => by id
+    - Support to list => by range of ids
+    - Support to list => by dates, range of dates
+    - Support to list => by category
