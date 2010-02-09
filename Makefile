@@ -1,6 +1,6 @@
 INSTALL_TO=/opt/hrai
 MASTER_PY=hrai.py
-HELPERS=add.py add-category.py init.py
+HELPERS=add.py add-category.py init.py list.py
 
 BASH_COMPLETION=bash_completion.d/hrai
 BASH_COMPLETION_INSTALL_TO=$$HOME/.bash_completion.d
