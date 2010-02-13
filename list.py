@@ -20,10 +20,10 @@ c = sqlite3.connect(DB_FILE)
 cur = c.cursor()
 
 cur.execute("""
-SELECT e.rowid, e.amount, e.date, c.category, e.description, e.marked
+SELECT e.rowid, e.amount, e.date, c.category, e.description, e.date_effective
 FROM entries AS e, categories AS c
 WHERE e.category = c.rowid
-ORDER BY e.date_effective
+ORDER BY e.date, c.rowid
 """)
 
 if cur.rowcount == 0:
@@ -37,9 +37,9 @@ for line in cur.fetchall():
     date = line[2]
     category = line[3]
     description = line[4]
-    marked = line[5]
+    marked_date = line[5]
 
-    if options.marked_flag and not marked:
+    if options.marked_flag and marked_date == None:
         continue
 
     # If this fails it means db corruption!
@@ -52,10 +52,10 @@ for line in cur.fetchall():
     else:
         date = colored(date, 'green')
 
-    if marked:
-        date = date + "*"
-    else:
+    if marked_date == None:
         date = date + " "
+    else:
+        date = date + "*"
 
     total += amount
     print '%06d'  % id, \

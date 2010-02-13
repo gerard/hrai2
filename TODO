@@ -5,3 +5,4 @@
     - Support to list => by dates, range of dates
     - Support to list => by category
 * List output recognizes terminal width
+* Drop marked column in entries database and rename date_effective

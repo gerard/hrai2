@@ -27,8 +27,7 @@ CREATE TABLE entries (
     date_effective TEXT,
     amount INTEGER,
     description TEXT,
-    category INTEGER,
-    marked INTEGER
+    category INTEGER
 )
 """)
 

@@ -12,8 +12,6 @@ DB_FILE = DB_PATH + "/.hrai2.db"
 exec_name = sys.argv[0]
 
 parser = OptionParser()
-parser.add_option("-e", "--effective-date", dest="effective_date",
-                  default=None, help="Set effective date")
 (options, args) = parser.parse_args()
 
 
@@ -37,11 +35,6 @@ except:
 
 parse_date_with_exc(strdate)
 
-if options.effective_date:
-    effective = options.effective_date
-    parse_date_with_exc(effective);
-else:
-    effective = strdate
 
 try:
     amount = float(stramount)
@@ -60,8 +53,8 @@ except TypeError:
 if category_income == 0 or category_income == None:
     amount = -amount;
 
-c.execute("INSERT INTO entries VALUES (?, ?, ?, ?, ?, 0)",
-                  (strdate, effective, amount, description, category_id))
+c.execute("INSERT INTO entries VALUES (?, NULL, ?, ?, ?, 0)",
+                  (strdate, amount, description, category_id))
 
 c.commit()
 c.close()
