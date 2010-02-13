@@ -1,6 +1,12 @@
 # vim: set filetype=sh :
 
 HELPERS="init add add-category list mark"
+
+_hrai_get_categories()
+{
+    sqlite3 $HOME/.hrai2.db "SELECT category FROM categories;" | tr '\n' ' '
+}
+
 _hrai()
 {
     local cur prev opts
@@ -10,6 +16,8 @@ _hrai()
 
     if [ "$prev" == "hrai" ] ; then
         opts=$HELPERS
+    elif [ $COMP_CWORD -eq 4 ] && [ ${COMP_WORDS[COMP_CWORD-3]} = add ]; then
+        opts=`_hrai_get_categories`
     else
         return 1
     fi

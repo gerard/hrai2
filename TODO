@@ -5,4 +5,3 @@
     - Support to list => by dates, range of dates
     - Support to list => by category
 * List output recognizes terminal width
-* Category autocompletion
