@@ -24,6 +24,7 @@ c = conn.cursor()
 c.execute("""
 CREATE TABLE entries (
     date TEXT,
+    date_effective TEXT,
     amount INTEGER,
     description TEXT,
     category INTEGER
