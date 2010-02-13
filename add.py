@@ -51,11 +51,14 @@ except ValueError:
 c = sqlite3.connect(DB_FILE)
 cur = c.cursor()
 
-cur.execute("SELECT rowid FROM categories WHERE category LIKE ?", (category,))
+cur.execute("SELECT rowid, income FROM categories WHERE category LIKE ?", (category,))
 try:
-    category_id = cur.fetchone()[0]
+    (category_id, category_income) = cur.fetchone()
 except TypeError:
     sys.exit("E: No such category")
+
+if category_income == 0 or category_income == None:
+    amount = -amount;
 
 c.execute("INSERT INTO entries VALUES (?, ?, ?, ?, ?)",
                   (strdate, effective, amount, description, category_id))

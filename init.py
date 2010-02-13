@@ -33,7 +33,8 @@ CREATE TABLE entries (
 
 c.execute("""
 CREATE TABLE categories (
-    category TEXT UNIQUE
+    category TEXT UNIQUE,
+    income INTEGER
 )
 """)
 
