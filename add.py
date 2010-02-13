@@ -60,7 +60,7 @@ except TypeError:
 if category_income == 0 or category_income == None:
     amount = -amount;
 
-c.execute("INSERT INTO entries VALUES (?, ?, ?, ?, ?)",
+c.execute("INSERT INTO entries VALUES (?, ?, ?, ?, ?, 0)",
                   (strdate, effective, amount, description, category_id))
 
 c.commit()
