@@ -57,6 +57,9 @@ for line in cur.fetchall():
     else:
         date = date + "*"
 
+    if description == None:
+        description = ""
+
     total += amount
     print '%06d'  % id, \
           '%9.2f' % total, ":", \
