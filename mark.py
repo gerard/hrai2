@@ -22,19 +22,27 @@ cur = c.cursor()
 
 try:
     id = int(args[0])
-    if options.unmark_flag:
-        mark_date = NULL
-    else
-        datetime.strptime(args[1], "%Y-%m-%d");
-        mark_date = args[1]
 except:
-    print "Usage: %s id date" % exec_name
+    print "Usage: %s [-u] id [date]"
     sys.exit(1)
 
-cur.execute("""
-UPDATE entries
-SET date_effective = ?
-WHERE rowid = ? """, (mark_date, id))
+if options.unmark_flag:
+    cur.execute("""
+    UPDATE entries
+    SET date_effective = NULL
+    WHERE rowid = ? """, (id, ))
+else:
+    try:
+        datetime.strptime(args[1], "%Y-%m-%d");
+        mark_date = args[1]
+    except:
+        print "Usage: %s id date" % exec_name
+        sys.exit(1)
+
+    cur.execute("""
+    UPDATE entries
+    SET date_effective = ?
+    WHERE rowid = ? """, (mark_date, id))
 
 c.commit();
 c.close()
