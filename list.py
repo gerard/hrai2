@@ -43,14 +43,17 @@ for line in cur.fetchall():
         continue
 
     # If this fails it means db corruption!
-    wday = datetime.strptime(date, "%Y-%m-%d").weekday()
-
-    if wday == 5:
-        date = colored(date, 'yellow')
-    elif wday == 6:
-        date = colored(date, 'red')
+    day = datetime.strptime(date, "%Y-%m-%d")
+    if datetime.today() < day:
+        date = colored(date, 'blue')
     else:
-        date = colored(date, 'green')
+        wday = day.weekday()
+        if wday == 5:
+            date = colored(date, 'yellow')
+        elif wday == 6:
+            date = colored(date, 'red')
+        else:
+            date = colored(date, 'green')
 
     if marked_date == None:
         date = date + " "
