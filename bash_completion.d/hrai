@@ -1,6 +1,6 @@
 # vim: set filetype=sh :
 
-HELPERS="init add add-category list mark"
+HELPERS="init add add-category list mark backup"
 
 _hrai_get_categories()
 {

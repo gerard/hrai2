@@ -8,3 +8,7 @@
 * Drop marked column in entries database and rename date_effective
 * Automatically backup through hrai.py
 * Fix argv[0] on helper scripts
+    * BETTER FIX: Move subcommands to functions
+* Keep hrai mark order on hrai list -m
+* Mark a expense by cost/date/category (with prompt)
+* hrai backup should check if file exists, and have a --force flag
