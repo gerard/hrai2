@@ -30,7 +30,7 @@ WHERE e.category = c.rowid
 if options.marked_flag:
     query += " ORDER BY e.date_effective, marked"
 else:
-    query += " ORDER BY e.date, c.rowid"
+    query += " ORDER BY e.date, e.rowid"
 
 cur.execute(query)
 if cur.rowcount == 0:

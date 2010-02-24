@@ -9,5 +9,6 @@
 * hrai backup: should check if file exists, and have a --force flag
 * hrai backup: remote backup (rsync to a server via ssh)
 * hrai modify: add command to modify existing entries
+* hrai graph: graph data (matplotlib? gnuplot? text?)
 * hrai wrapper: Fix argv[0] on helper scripts
     * BETTER FIX: Move subcommands to functions
