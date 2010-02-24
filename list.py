@@ -19,13 +19,20 @@ DB_FILE = DB_PATH + "/.hrai2.db"
 c = sqlite3.connect(DB_FILE)
 cur = c.cursor()
 
-cur.execute("""
+query = """
 SELECT e.rowid, e.amount, e.date, c.category, e.description, e.date_effective
 FROM entries AS e, categories AS c
 WHERE e.category = c.rowid
-ORDER BY e.date, c.rowid
-""")
+"""
 
+# Marked list is sorted by the mark date and order of input
+# Normal list is sorted by cost date and order of input
+if options.marked_flag:
+    query += " ORDER BY e.date_effective, marked"
+else:
+    query += " ORDER BY e.date, c.rowid"
+
+cur.execute(query)
 if cur.rowcount == 0:
     sys.exit(0)
 
@@ -41,6 +48,9 @@ for line in cur.fetchall():
 
     if options.marked_flag and marked_date == None:
         continue
+
+    if options.marked_flag:
+        date = marked_date
 
     # If this fails it means db corruption!
     day = datetime.strptime(date, "%Y-%m-%d")

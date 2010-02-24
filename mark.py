@@ -39,10 +39,22 @@ else:
         print "Usage: %s id date" % exec_name
         sys.exit(1)
 
+    # Fetch the current maximum mark
+    cur.execute("""
+    SELECT MAX(marked)
+    FROM entries
+    WHERE date_effective = ?""", (mark_date,))
+
+    max_mark = cur.fetchone()[0]
+    if max_mark is None:
+        next_mark = 0
+    else:
+        next_mark = max_mark + 1
+
     cur.execute("""
     UPDATE entries
-    SET date_effective = ?
-    WHERE rowid = ? """, (mark_date, id))
+    SET date_effective = ?, marked = ?
+    WHERE rowid = ?""", (mark_date, next_mark, id))
 
 c.commit();
 c.close()

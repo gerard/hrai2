@@ -1,14 +1,13 @@
-* Date shortcut for today (Usage of 'now')
-* Improvements to list filtering
-    - Support to list => by id
-    - Support to list => by range of ids
-    - Support to list => by dates, range of dates
-    - Support to list => by category
-* List output recognizes terminal width
-* Drop marked column in entries database and rename date_effective
-* Automatically backup through hrai.py
-* Fix argv[0] on helper scripts
+* hrai add: date shortcut for today (Usage of 'now')
+* hrai mark: date shortcut for today (Usage of 'now')
+* hrai list: filtering
+* hrai list: output recognizes terminal width
+* hrai list: output recognizes if "less" should be used
+* hrai list: more recent entries are shown first
+* hrai mark: mark by cost/date/category (with prompt)
+* hrai mark: forbid to reset mark flag (use modify)
+* hrai backup: should check if file exists, and have a --force flag
+* hrai backup: remote backup (rsync to a server via ssh)
+* hrai modify: add command to modify existing entries
+* hrai wrapper: Fix argv[0] on helper scripts
     * BETTER FIX: Move subcommands to functions
-* Keep hrai mark order on hrai list -m
-* Mark a expense by cost/date/category (with prompt)
-* hrai backup should check if file exists, and have a --force flag
