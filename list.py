@@ -78,7 +78,7 @@ for line in cur.fetchall():
           '%9.2f' % total, ":", \
           '%9.2f' % amount, \
           date, \
-          category.rjust(12) \
+          category.rjust(13) \
           , "=>", description
 
 c.close()
